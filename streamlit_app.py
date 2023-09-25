@@ -84,9 +84,10 @@ if streamlit.button('Add a Fruit to the List'):
     back_from_function = insert_row_snowflake(add_my_fruit)
     streamlit.text(back_from_function)
 
-#dont run anything past here while we troubleshoot
-streamlit.stop()
 
 
 #This will not work correctly, but just go with it for now
 my_cur.execute("insert into fruit_load_list values ('from streamlit')")
+
+#dont run anything past here while we troubleshoot
+streamlit.stop()
