@@ -37,19 +37,6 @@ def insert_row_snowflake(new_fruit):
         my_cur.execute("insert into fruit_load_list values ('from streamlit')")
         return "Thanks for adding " + new_fruit
 
-
-
-#dont run anything past here while we troubleshoot
-streamlit.stop()
-
-
-
-#Create the repeatable code block (called a function)
-def get_fruityvice_data(this_fruit_choice):
-    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + this_fruit_choice)
-    fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-    return fruityvice_normalized
-
 #New Section to display fruityvice api response
 streamlit.header('Fruityvice Fruit Advice!')
 try:
@@ -62,6 +49,19 @@ try:
 
 except URLError as e:
   streamlit.error()
+
+#dont run anything past here while we troubleshoot
+streamlit.stop()
+
+
+
+#Create the repeatable code block (called a function)
+def get_fruityvice_data(this_fruit_choice):
+    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + this_fruit_choice)
+    fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+    return fruityvice_normalized
+
+
 
 streamlit.header("The fruit load list contains:")
 #Snowflake-related functions
